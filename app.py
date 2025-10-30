@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate  # ✅ Add this
+from flask_migrate import Migrate
 
 from flask_login import (
     LoginManager, login_user, login_required,
@@ -10,17 +10,15 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from models import db, User, Task, Reminder
 
-# --- Initialize app and DB ---
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///edumate.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'your_secret_key'
 
 db.init_app(app)
-migrate = Migrate(app, db)  # ✅ Add this line
+migrate = Migrate(app, db)
 
 
-# Flask-Login setup
 login_manager = LoginManager()
 login_manager.login_view = 'login'
 login_manager.init_app(app)
@@ -60,7 +58,7 @@ def signup():
             return redirect(url_for('signup'))
 
         hashed_pw = generate_password_hash(password)
-        username = email.split('@')[0]  # default username
+        username = email.split('@')[0]
         new_user = User(username=username, name=name, student_id=student_id, email=email, password=hashed_pw)
 
         db.session.add(new_user)
@@ -134,7 +132,7 @@ def add_task():
         db.session.add(new_task)
         db.session.commit()
         flash('Task added successfully.', 'success')
-        return redirect(url_for('task_management'))  # ✅ Redirect here
+        return redirect(url_for('task_management'))
     return render_template('add_task.html')
 
 
@@ -144,7 +142,6 @@ def add_task():
 def edit_task(id):
     task = Task.query.get_or_404(id)
 
-    # Prevent users from editing other users' tasks
     if task.user_id != current_user.id:
         flash('You are not authorized to edit this task.', 'danger')
         return redirect(url_for('index'))
