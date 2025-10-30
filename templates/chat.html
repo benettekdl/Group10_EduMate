@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Chat with EduMate</h2>
+
+<div id="chatbox" class="chatbox">
+  <div class="msg bot">Hello! I am EduMate. Try: "Add assignment due tomorrow at 9:00"</div>
+</div>
+
+<form id="chat-form" onsubmit="return sendMsg();">
+  <input id="msg-input" type="text" placeholder="Type your message..." required>
+  <button class="btn" type="submit">Send</button>
+</form>
+
+<script>
+function sendMsg() {
+  const input = document.getElementById('msg-input');
+  const text = input.value.trim();
+  if (!text) return false;
+  const chat = document.getElementById('chatbox');
+  const userDiv = document.createElement('div');
+  userDiv.className = 'msg user';
+  userDiv.textContent = text;
+  chat.appendChild(userDiv);
+  input.value = '';
+
+  // Minimal local echo reply for demo
+  const botDiv = document.createElement('div');
+  botDiv.className = 'msg bot';
+  botDiv.textContent = 'EduMate (demo): I heard "' + text + '". Chat-to-task parsing not implemented in demo.';
+  chat.appendChild(botDiv);
+  chat.scrollTop = chat.scrollHeight;
+  return false;
+}
+</script>
+{% endblock %}

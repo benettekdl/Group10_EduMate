@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Task Details</h2>
+
+<div class="task-detail">
+  <h3>{{ task.title }}</h3>
+  <p><strong>Type:</strong> {{ task.task_type }}</p>
+  <p><strong>Due Date:</strong> {{ task.due_date.strftime('%Y-%m-%d %H:%M') }}</p>
+  <p><strong>Notes:</strong> {{ task.notes }}</p>
+  <p><strong>Status:</strong> {% if task.completed %}Completed{% else %}Pending{% endif %}</p>
+
+  <div class="actions">
+    <a class="btn" href="{{ url_for('edit_task', id=task.id) }}">Edit</a>
+    <form method="post" action="{{ url_for('delete_task', id=task.id) }}" style="display:inline;">
+      <button type="submit" class="btn danger">Delete</button>
+    </form>
+    <a class="btn secondary" href="{{ url_for('index') }}">Back to Tasks</a>
+  </div>
+</div>
+{% endblock %}

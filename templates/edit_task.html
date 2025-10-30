@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Edit Task</h2>
+<form method="post">
+  <label>Title</label>
+  <input name="title" value="{{ task.title }}" required>
+
+  <label>Type</label>
+  <select name="task_type" required>
+    <option {% if task.task_type == 'Assignment' %}selected{% endif %}>Assignment</option>
+    <option {% if task.task_type == 'Exam' %}selected{% endif %}>Exam</option>
+    <option {% if task.task_type == 'Project' %}selected{% endif %}>Project</option>
+    <option {% if task.task_type == 'Other' %}selected{% endif %}>Other</option>
+  </select>
+
+  <label>Due Date and Time</label>
+  <!-- convert to local datetime-local format -->
+  <input type="datetime-local" name="due_date" value="{{ task.due_date.strftime('%Y-%m-%dT%H:%M') }}" required>
+
+  <label>Notes</label>
+  <textarea name="notes">{{ task.notes }}</textarea>
+
+  <label>Reminder (minutes before)</label>
+  <input type="number" name="reminder" value="{{ task.reminder_minutes_before }}">
+
+  <label>Completed</label>
+  <input type="checkbox" name="completed" {% if task.completed %}checked{% endif %}>
+
+  <button class="btn" type="submit">Update</button>
+</form>
+{% endblock %}

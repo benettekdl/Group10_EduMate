@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Edit Reminder</h2>
+
+<form method="post">
+  <label for="title">Title:</label>
+  <input type="text" name="title" value="{{ reminder.title }}" required>
+
+  <label for="reminder_time">Reminder Time:</label>
+  <input type="datetime-local" name="reminder_time" value="{{ reminder.reminder_time.strftime('%Y-%m-%dT%H:%M') }}" required>
+
+  <label for="notes">Notes:</label>
+  <textarea name="notes">{{ reminder.notes }}</textarea>
+
+  <button type="submit">Update Reminder</button>
+</form>
+{% endblock %}

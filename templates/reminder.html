@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Reminders</h2>
+
+<div class="quick">
+  <a class="btn" href="{{ url_for('add_reminder') }}">Add Reminder</a>
+</div>
+
+{% if reminders %}
+  <ul class="reminder-list">
+    {% for r in reminders %}
+      <li class="reminder-card">
+        <div class="reminder-left">
+          <strong>{{ r.title }}</strong>
+          <div class="meta">Remind at {{ r.reminder_time.strftime('%Y-%m-%d %H:%M') }}</div>
+        </div>
+        <div class="reminder-right">
+          <a class="small" href="{{ url_for('reminder_view', id=r.id) }}">View</a>
+          <a class="small" href="{{ url_for('edit_reminder', id=r.id) }}">Edit</a>
+          <form style="display:inline" method="post" action="{{ url_for('delete_reminder', id=r.id) }}">
+            <button class="small danger" type="submit">Delete</button>
+          </form>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No reminders yet. Add one to get started.</p>
+{% endif %}
+{% endblock %}

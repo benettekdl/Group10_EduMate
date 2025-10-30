@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Dashboard - Upcoming Tasks</h2>
+
+<div class="quick">
+  <a class="btn" href="{{ url_for('add_task') }}">Add Task</a>
+  <a class="btn" href="{{ url_for('chat') }}">Chat with EduMate</a>
+  <a class="btn" href="{{ url_for('reminder_page') }}">View Reminders</a>
+
+</div>
+
+{% if tasks %}
+  <ul class="task-list">
+    {% for t in tasks %}
+      <li class="task-card {% if t.completed %}completed{% endif %}">
+        <div class="task-left">
+          <strong>{{ t.title }}</strong>
+          <div class="meta">{{ t.task_type }} • Due {{ t.due_date.strftime('%Y-%m-%d %H:%M') }}</div>
+        </div>
+        <div class="task-right">
+          <a class="small" href="{{ url_for('view_task', id=t.id) }}">View</a>
+          <a class="small" href="{{ url_for('edit_task', id=t.id) }}">Edit</a>
+          <form style="display:inline" method="post" action="{{ url_for('delete_task', id=t.id) }}">
+            <button class="small danger" type="submit">Delete</button>
+          </form>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No tasks yet. Add one to get started.</p>
+{% endif %}
+{% endblock %}
