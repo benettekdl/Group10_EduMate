@@ -1,24 +1,45 @@
-# Sprint 2 - PROJECT WEEKS 8-9 DELIVERABLE
 
-## Project Overview
-EduMate is a productivity web application built with **Flask**. The app helps users manage tasks, set reminders, and track progress visually.
+### **3. Sprint 3 - PROJECT WEEKS 9-11 DELIVERABLE README**
 
-## Features
-- User authentication (login/signup)
-- Reminder management (add, view, edit, delete reminders)
-- Profile management
-- Progress tracking dashboard
+**Filename suggestion:** `README_Sprint3_Final.md`  
+# Sprint 3 - PROJECT WEEKS 9-11 DELIVERABLE
 
-## System Setup
-## Requirements
-- Python 3.x
-- Flask
-- Virtual environment (`venv`) recommended
+## Project Summary
+EduMate is a web-based productivity app built using **Flask**. It allows users to:
 
-### Running the App
-1. Open the project folder in VS Code.
-2. Activate your virtual environment:
-   - Windows: `.\.venv\Scripts\activate`
-3. Install dependencies:
+- Create and manage reminders
+- Track personal progress
+- Access their profile and membership information
+- Visualize productivity through a dashboard
+
+This submission covers the complete project from Sprints 2 and 3, with fully functional features.
+
+## Project Structure
+- `app.py` – Main Flask application
+- `templates/` – HTML templates
+- `static/` – CSS, JS, images
+- `database.db` – SQLite database (if included)
+- `requirements.txt` – Python dependencies
+
+## Setup Instructions
+1. Clone or download the repository.
+2. Open the project folder in VS Code.
+3. Create and activate a virtual environment:
    ```bash
-   pip install -r requirements.txt
+   python -m venv .venv
+   .\.venv\Scripts\activate
+
+Install dependencies:
+pip install -r requirements.txt
+
+To run the application, open the terminal in vscode. (Make sure you are in the right folder)
+Type: python app.py
+
+Open the browser at:
+http://127.0.0.1:5000
+
+Notes
+
+Ensure Flask and other dependencies are installed in the virtual environment.
+
+The database is automatically updated when reminders are added, edited, or deleted.
