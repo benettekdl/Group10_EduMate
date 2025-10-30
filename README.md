@@ -1,5 +1,5 @@
 
-### **3. Sprint 3 - PROJECT WEEKS 9-11 DELIVERABLE README**
+###Sprint 3 - PROJECT WEEKS 9-11 DELIVERABLE README**
 
 **Filename suggestion:** `README_Sprint3_Final.md`  
 # Sprint 3 - PROJECT WEEKS 9-11 DELIVERABLE
