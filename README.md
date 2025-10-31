@@ -14,7 +14,7 @@ This submission covers the complete project from Sprints 2 and 3, with fully fun
 - `app.py` – Main Flask application
 - `templates/` – HTML templates
 - `static/` – CSS, JS, images
-- `database.db` – SQLite database (if included)
+- `database.db` – SQLite database
 - `requirements.txt` – Python dependencies
 
 ## Setup Instructions
